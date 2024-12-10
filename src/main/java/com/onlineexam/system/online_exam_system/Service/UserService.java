@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+/*@Service
 @Transactional
 public class UserService {
     @Autowired
@@ -27,3 +27,4 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 }
+*/

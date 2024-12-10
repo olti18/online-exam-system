@@ -1,39 +1,63 @@
 package com.onlineexam.system.online_exam_system.Model;
 
-
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
+@Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer userId;
 
-    private String name;
+    @Column(nullable = false, length = 50)
+    private String firstName;
+
+    @Column(nullable = false, length = 50)
+    private String lastName;
+
+    @Column(nullable = false, length = 100, unique = true)
     private String email;
 
-    @Version  // Add version field for optimistic locking
-    private Long version;  // Optimistic locking field
+    @Column(nullable = false)
+    private String password;
 
-    // Getters and setters
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
-    public Long getId() {
-        return id;
+    public enum Role {
+        Admin, Student
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public String getName() {
-        return name;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    // Getter and Setter for firstName
+    public String getFirstName() {
+        return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    // Getter and Setter for lastName
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    // Getter and Setter for email
     public String getEmail() {
         return email;
     }
@@ -42,11 +66,37 @@ public class User {
         this.email = email;
     }
 
-    public Long getVersion() {
-        return version;
+    // Getter and Setter for password
+    public String getPassword() {
+        return password;
     }
 
-    public void setVersion(Long version) {
-        this.version = version;
+    public void setPassword(String password) {
+        this.password = password;
     }
+
+    // Getter and Setter for role
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    /*@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private String role;*/
+
+    // Getters dhe Setters
 }
+
